@@ -1,0 +1,50 @@
+.podcastListItem {
+  width: 150px;
+  height: 150px;
+  text-align: center;
+  position: relative;
+
+  &__data {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    height: 85px;
+    width: 150px;
+    padding-top: 40px;
+    position: absolute;
+    bottom: 0;
+    z-index: 1;
+
+    &__name {
+      font-size: 12px;
+      font-weight: bold;
+      margin: 0;
+      padding: 0 5px;
+      text-transform: uppercase;
+
+      overflow: hidden;
+      text-overflow: ellipsis;
+      -webkit-line-clamp: 2;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+    }
+
+    &__author {
+      font-size: 12px;
+      margin: 0;
+      padding: 0 5px;
+
+      overflow: hidden;
+      text-overflow: ellipsis;
+      -webkit-line-clamp: 2;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+    }
+  }
+
+  &__image {
+    position: absolute;
+    bottom: 100px;
+    left: 45px;
+    z-index: 2;
+  }
+}

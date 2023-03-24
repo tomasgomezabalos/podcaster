@@ -1,10 +1,13 @@
 import {useGetPodcastsQuery} from "../../../services/podcastApi";
 import Loading from "../../atoms/loading";
 import {PodcastType} from "../../../types";
-import {Link} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import {FunctionComponent} from "react";
+import {Space} from "antd";
+import PodcastListItem from "../../molecules/podcastListItem";
 
 const Podcasts = () => {
+  const navigate = useNavigate();
   const {data, isLoading, isSuccess, isError, error} = useGetPodcastsQuery(100);
 
   if (isLoading) {
@@ -15,21 +18,24 @@ const Podcasts = () => {
     console.log("Error getting podcasts: ", error);
   }
 
+  const handlePodcastClick = (podcast: PodcastType) => {
+    navigate(`/podcast/${podcast.id}`);
+  }
+
   if (isSuccess) {
     const podcasts = data as PodcastType[];
     return (
-      <div>
-        <h1>Podcasts</h1>
+      <Space direction="horizontal" wrap>
         {podcasts?.map((podcast: PodcastType) => {
-          const {id, name} = podcast;
           return (
-            <div key={id}>
-              <Link to={`podcast/${id}`}>{name}</Link>
-            </div>
+            <PodcastListItem
+              key={podcast.id}
+              data={podcast}
+              onClick={handlePodcastClick}
+            />
           )
         })}
-        <h1>Podcasts</h1>
-      </div>
+      </Space>
     )
   }
 }

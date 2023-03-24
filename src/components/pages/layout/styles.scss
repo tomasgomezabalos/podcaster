@@ -1,0 +1,14 @@
+.layout {
+  width: 100vw;
+
+  &__link {
+    text-decoration: none;
+    color: cornflowerblue;
+    font-size: 24px;
+  }
+
+  &__header {
+       width: 100%;
+  }
+
+}
