@@ -1,37 +1,46 @@
-import {useState} from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import {lazy, Suspense} from 'react'
 import './App.css'
-import {useGetPodcastsQuery} from "./services/podcastApi";
+import {Route, Routes} from "react-router-dom";
+import Loading from "./components/atoms/loading";
+import Layout from "./components/pages/layout";
+
+const Podcasts = lazy(() => import("./components/pages/podcasts"));
+const Podcast = lazy(() => import("./components/pages/podcast"));
+const Episode = lazy(() => import("./components/pages/episode"));
 
 function App() {
-  const {data, isLoading, isSuccess, isError, error} = useGetPodcastsQuery(100);
-
-  const [count, setCount] = useState(0)
-
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route
+          index
+          element={(
+            <Suspense fallback={<Loading />}>
+              <Podcasts />
+            </Suspense>
+          )}
+        />
+        <Route
+          index
+          path='/podcast/:podcastId'
+          element={(
+            <Suspense fallback={<Loading />}>
+              <Podcast />
+            </Suspense>
+          )}
+        />
+        <Route
+          index
+          path='/podcast/:podcastId/episode/:episodeId'
+          element={(
+            <Suspense fallback={<Loading />}>
+              <Episode />
+            </Suspense>
+          )}
+        />
+        <Route path="*" element={<Podcasts />} />
+      </Route>
+    </Routes>
   )
 }
 

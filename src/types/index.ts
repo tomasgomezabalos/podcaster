@@ -1,11 +1,11 @@
-export type Podcast = {
+export type PodcastType = {
   id: string;
   name: string;
   author: string;
   image: string;
 }
 
-export type Episode = {
+export type EpisodeType = {
   id: string;
   title: string;
   duration: string;

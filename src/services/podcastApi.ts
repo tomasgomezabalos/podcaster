@@ -22,7 +22,7 @@ export const podcastApi = createApi({
         }))
       },
     }),
-    getPodcast: build.query({
+    getEpisodes: build.query({
       query: id => `https://itunes.apple.com/lookup?id=${id}&media=podcast&entity=podcastEpisode&limit=20`,
       transformResponse: (responseData: any) => {
         const {results} = responseData;
@@ -38,4 +38,4 @@ export const podcastApi = createApi({
   }),
 });
 
-export const {useGetPodcastsQuery, useGetPodcastQuery} = podcastApi;
+export const {useGetPodcastsQuery, useGetEpisodesQuery} = podcastApi;
