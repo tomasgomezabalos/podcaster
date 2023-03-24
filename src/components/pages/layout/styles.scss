@@ -1,5 +1,5 @@
 .layout {
-  width: 100vw;
+  width: 100%;
 
   &__link {
     text-decoration: none;
@@ -11,4 +11,16 @@
        width: 100%;
   }
 
+}
+
+.ant-input-group-addon {
+  background-color: red;
+}
+
+.ant-input-group-addon:first-child {
+  background-color: #4096FF;
+}
+
+.ant-input-group-addon:last-child {
+  background-color: blue;
 }
