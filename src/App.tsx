@@ -1,9 +1,12 @@
-import { useState } from 'react'
+import {useState} from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import {useGetPodcastsQuery} from "./services/podcastApi";
 
 function App() {
+  const {data, isLoading, isSuccess, isError, error} = useGetPodcastsQuery(100);
+
   const [count, setCount] = useState(0)
 
   return (
