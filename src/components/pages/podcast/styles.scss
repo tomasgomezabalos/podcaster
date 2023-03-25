@@ -1,0 +1,14 @@
+.podcast {
+
+  &__table__row_odd {
+    background-color: #f2f2f2;
+    color: #607786;
+    cursor: pointer;
+  }
+
+  &__table__row_even {
+    background-color: #ffffff;
+    color: #607786;
+    cursor: pointer;
+  }
+}

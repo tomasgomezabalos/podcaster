@@ -7,7 +7,7 @@ import {Space} from "antd";
 import PodcastListItem from "../../molecules/podcastListItem";
 import Search from "antd/es/input/Search";
 import {useDispatch, useSelector} from "react-redux";
-import {filterPodcasts} from "../../../redux/podcastSlice";
+import {filterPodcasts, selectPodcast} from "../../../redux/podcastSlice";
 
 const Podcasts = () => {
   const navigate = useNavigate();
@@ -25,6 +25,7 @@ const Podcasts = () => {
   }
 
   const handlePodcastClick = (podcast: PodcastType) => {
+    dispatch(selectPodcast(podcast));
     navigate(`/podcast/${podcast.id}`);
   }
 
