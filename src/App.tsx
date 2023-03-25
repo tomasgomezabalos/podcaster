@@ -1,12 +1,12 @@
 import {lazy, Suspense} from 'react'
 import './App.css'
 import {Route, Routes} from "react-router-dom";
-import Loading from "./components/atoms/loading";
-import Layout from "./components/pages/layout";
+import Loading from "./components/atoms/Loading";
+import Layout from "./components/pages/Layout";
 
-const Podcasts = lazy(() => import("./components/pages/podcasts"));
-const Podcast = lazy(() => import("./components/pages/podcast"));
-const Episode = lazy(() => import("./components/pages/episode"));
+const Podcasts = lazy(() => import("./components/pages/Podcasts"));
+const Podcast = lazy(() => import("./components/pages/Podcast"));
+const Episode = lazy(() => import("./components/pages/Episode"));
 
 function App() {
   return (

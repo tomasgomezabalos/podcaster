@@ -18,8 +18,6 @@ const PodcastListItem = ({ data, onClick }: IPodcastListItemProps) => {
     <Card
       hoverable
       style={{
-        margin: "10px",
-        overflow: "hidden",
         border: 0
       }}
       onClick={handlePodcastClick}
@@ -33,10 +31,20 @@ const PodcastListItem = ({ data, onClick }: IPodcastListItemProps) => {
             height={70}
           />
         </div>
-        <div className="podcastListItem__data">
+        <Card
+          style={{
+            border: "1px solid #ccc",
+            boxShadow: "2px 2px 2px 1px #cccccc",
+            position: "absolute",
+            top: 10,
+            paddingTop: 20,
+            height: 130,
+            width: 150,
+          }}
+        >
           <div className="podcastListItem__data__name">{name}</div>
           <div className="podcastListItem__data__author">{`Author: ${author}`}</div>
-        </div>
+        </Card>
       </div>
     </Card>
   )

@@ -1,21 +1,20 @@
 import {useNavigate, useParams} from "react-router-dom";
 import {useGetEpisodesQuery} from "../../../services/podcastApi";
-import Loading from "../../atoms/loading";
+import Loading from "../../atoms/Loading";
 import {FunctionComponent} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {Card, Col, Row, Table} from "antd";
+import {useSelector} from "react-redux";
+import {Col, Row, Table, Typography} from "antd";
 import PodcastDetails from "../../molecules/PodcastDetails";
 import {ColumnsType} from "antd/lib/table";
 import {EpisodeType} from "../../../types";
 import "./styles.scss"
-import {selectEpisode} from "../../../redux/podcastSlice";
+import CustomCard from "../../molecules/CustomCard";
 
 const Podcast = () => {
   const { podcastId } = useParams();
   const {isLoading, isSuccess, isError, error} = useGetEpisodesQuery(podcastId);
   const {podcast, episodes} = useSelector((state: any) => state.podcast);
   const navigate = useNavigate();
-  const dispatch = useDispatch();
 
   if (isLoading) {
     return <Loading />
@@ -64,26 +63,35 @@ const Podcast = () => {
           <PodcastDetails podcast={podcast} />
         </Col>
         <Col span={18}>
-          <Card>
-            <Table
-              rowKey="id"
-              columns={columns}
-              dataSource={episodes}
-              pagination={false}
-              size="small"
-              rowClassName={(record, index) => {
-                return index % 2 === 0 ? 'podcast__table__row_odd' : 'podcast__table__row_even';
-              }}
-              onRow={(record: EpisodeType) => {
-                return {
-                  onClick: () => {
-                    dispatch(selectEpisode(record));
-                    navigate(`episode/${record.id}`)
-                  },
-                };
-              }}
-            />
-          </Card>
+          <>
+            <div className="podcast__title">
+              <Typography.Title
+                level={2}
+                style={{ margin: "5px 0 5px 5px" }}
+              >
+                {`Episodes: ${episodes.length}`}
+              </Typography.Title>
+            </div>
+            <CustomCard>
+              <Table
+                rowKey="id"
+                columns={columns}
+                dataSource={episodes}
+                pagination={false}
+                size="small"
+                rowClassName={(record, index) => {
+                  return index % 2 === 0 ? 'podcast__table__row_odd' : 'podcast__table__row_even';
+                }}
+                onRow={(record: EpisodeType) => {
+                  return {
+                    onClick: () => {
+                      navigate(`episode/${record.id}`)
+                    },
+                  };
+                }}
+              />
+            </CustomCard>
+          </>
         </Col>
       </Row>
     )

@@ -1,19 +1,19 @@
 import {useGetPodcastsQuery} from "../../../services/podcastApi";
-import Loading from "../../atoms/loading";
+import Loading from "../../atoms/Loading";
 import {PodcastType} from "../../../types";
 import {useNavigate} from "react-router-dom";
 import {FormEvent, FunctionComponent, useTransition} from "react";
-import {Space} from "antd";
-import PodcastListItem from "../../molecules/podcastListItem";
-import Search from "antd/es/input/Search";
+import {Input, Space} from "antd";
+import PodcastListItem from "../../molecules/PodcastListItem";
 import {useDispatch, useSelector} from "react-redux";
 import {filterPodcasts, selectPodcast} from "../../../redux/podcastSlice";
+import "./styles.scss";
 
 const Podcasts = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const {data, isLoading, isSuccess, isError, error} = useGetPodcastsQuery(100);
-  let [isPending, startTransition] = useTransition();
+  const [_, startTransition] = useTransition();
   const {podcasts: filteredPodcasts} = useSelector((state: any) => state.podcast);
 
   if (isLoading) {
@@ -31,7 +31,7 @@ const Podcasts = () => {
 
   const handleSearch = (event: FormEvent<HTMLInputElement>) => {
     startTransition(() => {
-      dispatch(filterPodcasts({filter: event.currentTarget.value, data}));
+      dispatch(filterPodcasts({filter: event.currentTarget.value, data: data || []}));
     });
   };
 
@@ -39,18 +39,16 @@ const Podcasts = () => {
     const podcasts = filteredPodcasts as PodcastType[];
     return (
       <Space direction="vertical" style={{ width: "100%" }}>
-        <div style={{ width: "100%", textAlign: "right" }}>
-          <Search
+        <div className="podcasts__search">
+          <Input
             addonBefore={(
               <span style={{ fontSize: 20, fontWeight: 600, color: "white" }}>{`${podcasts?.length}`}</span>
             )}
-            placeholder="input search text"
+            placeholder="Filter podcasts..."
             allowClear
             onChange={handleSearch}
             style={{ width: 400 }}
             size="large"
-            enterButton
-            loading={isPending}
           />
         </div>
         <Space direction="horizontal" wrap>

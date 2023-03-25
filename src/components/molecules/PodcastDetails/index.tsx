@@ -1,8 +1,9 @@
-import {Image} from "antd";
+import {Image, Typography} from "antd";
 import {PodcastType} from "../../../types";
 import "./styles.scss"
-import CustomDivider from "../CustomDivider";
+import CustomDivider from "../../atoms/CustomDivider";
 import CustomCard from "../CustomCard";
+import HtmlText from "../../atoms/HtmlText";
 
 export interface IPodcastDetailsProps {
   podcast: PodcastType;
@@ -22,13 +23,15 @@ const PodcastDetails = ({ podcast }: IPodcastDetailsProps) => {
           />
         </div>
         <CustomDivider />
-        <div className="podcastDetails__title">{name}</div>
-        <div className="podcastDetails__text">{`by ${author}`}</div>
+        <Typography.Title level={5}>{name}</Typography.Title>
+        <Typography.Text italic>{`by ${author}`}</Typography.Text>
         {description && (
           <>
             <CustomDivider />
-            <div className="podcastDetails__title">Description:</div>
-            <div className="podcastDetails__text">{description}</div>
+            <Typography.Title level={5}>Description:</Typography.Title>
+            <Typography.Paragraph italic>
+              <HtmlText text={description} />
+            </Typography.Paragraph>
           </>
         )}
       </div>

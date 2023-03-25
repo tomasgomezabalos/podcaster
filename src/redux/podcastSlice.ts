@@ -29,9 +29,6 @@ export const podcastSlice = createSlice({
     selectPodcast: (state, action: PayloadAction<PodcastType>) => {
       state.podcast = action.payload;
     },
-    selectEpisode: (state, action: PayloadAction<EpisodeType>) => {
-      state.episode = action.payload;
-    }
   },
   extraReducers: (builder) => {
     builder.addMatcher(
@@ -67,4 +64,4 @@ export const podcastSlice = createSlice({
   },
 });
 
-export const {filterPodcasts, selectPodcast, selectEpisode} = podcastSlice.actions;
+export const {filterPodcasts, selectPodcast} = podcastSlice.actions;

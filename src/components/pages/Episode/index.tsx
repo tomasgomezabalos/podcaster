@@ -4,7 +4,7 @@ import {useSelector} from "react-redux";
 import {Col, Row} from "antd";
 import PodcastDetails from "../../molecules/PodcastDetails";
 import {useGetEpisodesQuery} from "../../../services/podcastApi";
-import Loading from "../../atoms/loading";
+import Loading from "../../atoms/Loading";
 import EpisodeDetails from "../../molecules/EpisodeDetails";
 import {EpisodeType} from "../../../types";
 import CustomCard from "../../molecules/CustomCard";

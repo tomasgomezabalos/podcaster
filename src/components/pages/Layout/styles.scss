@@ -1,0 +1,24 @@
+.layout {
+  width: 100%;
+
+  &__header {
+    width: 100%;
+
+    &__link {
+      display: flex;
+      cursor: pointer;
+
+      &__text {
+        text-decoration: none;
+        color: #82aac0;
+        font-size: 34px;
+        margin-left: 5px;
+      }
+    }
+  }
+
+}
+
+.ant-input-group-addon:first-child {
+  background-color: #4096FF;
+}
