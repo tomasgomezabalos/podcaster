@@ -1,4 +1,4 @@
-import {createSlice} from "@reduxjs/toolkit";
+import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {podcastApi} from "../services/podcastApi";
 import {EpisodeType, PodcastType} from "../types";
 
@@ -6,26 +6,31 @@ export type PodcastStateType = {
   podcasts: PodcastType[],
   podcast: PodcastType | undefined,
   episodes: EpisodeType[],
+  episode: EpisodeType | undefined,
 }
 
 const initialState: PodcastStateType = {
   podcasts: [],
   podcast: undefined,
   episodes: [],
+  episode: undefined,
 }
 
 export const podcastSlice = createSlice({
   name: 'podcast',
   initialState,
   reducers: {
-    filterPodcasts: (state, action) => {
+    filterPodcasts: (state, action: PayloadAction<{filter: string, data: PodcastType[]}>) => {
       const {filter, data} = action.payload
       state.podcasts = filter ? data.filter((podcast: PodcastType) =>
         podcast.name.toLowerCase().includes(filter.toLowerCase()) ||
         podcast.author.toLowerCase().includes(filter.toLowerCase())) : data;
     },
-    selectPodcast: (state, action) => {
+    selectPodcast: (state, action: PayloadAction<PodcastType>) => {
       state.podcast = action.payload;
+    },
+    selectEpisode: (state, action: PayloadAction<EpisodeType>) => {
+      state.episode = action.payload;
     }
   },
   extraReducers: (builder) => {
@@ -62,4 +67,4 @@ export const podcastSlice = createSlice({
   },
 });
 
-export const {filterPodcasts, selectPodcast} = podcastSlice.actions;
+export const {filterPodcasts, selectPodcast, selectEpisode} = podcastSlice.actions;
