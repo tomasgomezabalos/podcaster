@@ -41,7 +41,7 @@ const Podcasts = () => {
         <div style={{ width: "100%", textAlign: "right" }}>
           <Search
             addonBefore={(
-              <span style={{ fontSize: 20, fontWeight: 600, color: "white" }}>{podcasts?.length}</span>
+              <span style={{ fontSize: 20, fontWeight: 600, color: "white" }}>{`${podcasts?.length}`}</span>
             )}
             placeholder="input search text"
             allowClear
