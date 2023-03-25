@@ -30,6 +30,15 @@ const Podcast = () => {
         title: 'Title',
         dataIndex: 'title',
         key: 'title',
+        render: (value: string, record: EpisodeType) => (
+          <Typography.Text
+            strong
+            style={{ color: "#607786" }}
+            onClick={() => navigate(`episode/${record.id}`)}
+          >
+            {value}
+          </Typography.Text>
+        )
       },
       {
         title: 'Date',
@@ -43,7 +52,9 @@ const Podcast = () => {
           year = inputDate.getFullYear();
           date = date.toString().padStart(2, '0');
           month = month.toString().padStart(2, '0');
-          return `${date}/${month}/${year}`;
+          return (
+            <Typography.Text strong>{`${date}/${month}/${year}`}</Typography.Text>
+          )
         },
       },
       {
@@ -52,7 +63,9 @@ const Podcast = () => {
         key: 'duration',
         render: (value: number) => {
           const date = new Date(value);
-          return date.toISOString().substring(11, 19);
+          return (
+            <Typography.Text strong>{date.toISOString().substring(11, 19)}</Typography.Text>
+          )
         }
       },
     ]
@@ -81,13 +94,6 @@ const Podcast = () => {
                 size="small"
                 rowClassName={(record, index) => {
                   return index % 2 === 0 ? 'podcast__table__row_odd' : 'podcast__table__row_even';
-                }}
-                onRow={(record: EpisodeType) => {
-                  return {
-                    onClick: () => {
-                      navigate(`episode/${record.id}`)
-                    },
-                  };
                 }}
               />
             </CustomCard>
