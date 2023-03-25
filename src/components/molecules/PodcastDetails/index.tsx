@@ -4,6 +4,7 @@ import "./styles.scss"
 import CustomDivider from "../../atoms/CustomDivider";
 import CustomCard from "../CustomCard";
 import HtmlText from "../../atoms/HtmlText";
+import {useNavigate} from "react-router-dom";
 
 export interface IPodcastDetailsProps {
   podcast: PodcastType;
@@ -11,6 +12,11 @@ export interface IPodcastDetailsProps {
 
 const PodcastDetails = ({ podcast }: IPodcastDetailsProps) => {
   const { name, author, image, description } = podcast;
+  const navigate = useNavigate();
+
+  const navigateToPodcast = () => {
+    navigate(`/podcast/${podcast.id}`);
+  }
 
   return (
     <CustomCard>
@@ -20,11 +26,24 @@ const PodcastDetails = ({ podcast }: IPodcastDetailsProps) => {
             preview={false}
             src={image}
             height={100}
+            onClick={navigateToPodcast}
           />
         </div>
         <CustomDivider />
-        <Typography.Title level={5}>{name}</Typography.Title>
-        <Typography.Text italic>{`by ${author}`}</Typography.Text>
+        <Typography.Title
+          level={5}
+          onClick={navigateToPodcast}
+          style={{ cursor: "pointer" }}
+        >
+          {name}
+        </Typography.Title>
+        <Typography.Text
+          italic
+          onClick={navigateToPodcast}
+          style={{ cursor: "pointer" }}
+        >
+          {`by ${author}`}
+        </Typography.Text>
         {description && (
           <>
             <CustomDivider />

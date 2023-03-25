@@ -7,6 +7,7 @@ export type PodcastStateType = {
   podcast: PodcastType | undefined,
   episodes: EpisodeType[],
   episode: EpisodeType | undefined,
+  isNavigating: boolean,
 }
 
 const initialState: PodcastStateType = {
@@ -14,21 +15,25 @@ const initialState: PodcastStateType = {
   podcast: undefined,
   episodes: [],
   episode: undefined,
+  isNavigating: false,
 }
 
 export const podcastSlice = createSlice({
   name: 'podcast',
   initialState,
   reducers: {
-    filterPodcasts: (state, action: PayloadAction<{filter: string, data: PodcastType[]}>) => {
+    filterPodcasts: (state: PodcastStateType, action: PayloadAction<{filter: string, data: PodcastType[]}>) => {
       const {filter, data} = action.payload
       state.podcasts = filter ? data.filter((podcast: PodcastType) =>
         podcast.name.toLowerCase().includes(filter.toLowerCase()) ||
         podcast.author.toLowerCase().includes(filter.toLowerCase())) : data;
     },
-    selectPodcast: (state, action: PayloadAction<PodcastType>) => {
+    selectPodcast: (state: PodcastStateType, action: PayloadAction<PodcastType>) => {
       state.podcast = action.payload;
     },
+    setNavigating: (state: PodcastStateType, action: PayloadAction<boolean>) => {
+      state.isNavigating = action.payload;
+    }
   },
   extraReducers: (builder) => {
     builder.addMatcher(
@@ -64,4 +69,4 @@ export const podcastSlice = createSlice({
   },
 });
 
-export const {filterPodcasts, selectPodcast} = podcastSlice.actions;
+export const {filterPodcasts, selectPodcast, setNavigating} = podcastSlice.actions;

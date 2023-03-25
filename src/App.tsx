@@ -2,7 +2,7 @@ import {lazy, Suspense} from 'react'
 import './App.css'
 import {Route, Routes} from "react-router-dom";
 import Loading from "./components/atoms/Loading";
-import Layout from "./components/pages/Layout";
+import Layout from "./components/molecules/Layout";
 
 const Podcasts = lazy(() => import("./components/pages/Podcasts"));
 const Podcast = lazy(() => import("./components/pages/Podcast"));
