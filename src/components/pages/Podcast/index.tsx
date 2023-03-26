@@ -10,6 +10,7 @@ import {EpisodeType} from "../../../types";
 import "./styles.scss"
 import CustomCard from "../../molecules/CustomCard";
 import {setNavigating} from "../../../redux/podcastSlice";
+import {formatDate, formatDuration} from "../../../utils";
 
 const Podcast = () => {
   const { podcastId } = useParams();
@@ -51,29 +52,17 @@ const Podcast = () => {
         title: 'Date',
         dataIndex: 'date',
         key: 'date',
-        render: (value: string) => {
-          const inputDate = new Date(value);
-          let date, month, year;
-          date = inputDate.getDate();
-          month = inputDate.getMonth() + 1;
-          year = inputDate.getFullYear();
-          date = date.toString().padStart(2, '0');
-          month = month.toString().padStart(2, '0');
-          return (
-            <Typography.Text strong>{`${date}/${month}/${year}`}</Typography.Text>
-          )
-        },
+        render: (value: string) => (
+          <Typography.Text strong>{formatDate(value)}</Typography.Text>
+        ),
       },
       {
         title: 'Duration',
         dataIndex: 'duration',
         key: 'duration',
-        render: (value: number) => {
-          const date = new Date(value);
-          return (
-            <Typography.Text strong>{date.toISOString().substring(11, 19)}</Typography.Text>
-          )
-        }
+        render: (value: number) => (
+          <Typography.Text strong>{formatDuration(value)}</Typography.Text>
+        )
       },
     ]
 
