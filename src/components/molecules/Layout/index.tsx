@@ -2,13 +2,16 @@ import {Outlet, useNavigate} from "react-router-dom";
 import "./styles.scss";
 import CustomDivider from "../../atoms/CustomDivider";
 import {HomeOutlined, LoadingOutlined} from "@ant-design/icons";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {setNavigating} from "../../../redux/podcastSlice";
 
 const Layout = () => {
   const navigate = useNavigate();
   const {isNavigating} = useSelector((state: any) => state.podcast);
+  const dispatch = useDispatch();
 
   const handleHome = () => {
+    dispatch(setNavigating(true));
     navigate("/");
   }
 

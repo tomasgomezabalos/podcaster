@@ -30,6 +30,7 @@ export const podcastSlice = createSlice({
     },
     selectPodcast: (state: PodcastStateType, action: PayloadAction<PodcastType>) => {
       state.podcast = action.payload;
+      state.isNavigating = true;
     },
     setNavigating: (state: PodcastStateType, action: PayloadAction<boolean>) => {
       state.isNavigating = action.payload;

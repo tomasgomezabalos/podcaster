@@ -2,19 +2,21 @@ import {useNavigate, useParams} from "react-router-dom";
 import {useGetEpisodesQuery} from "../../../services/podcastApi";
 import Loading from "../../atoms/Loading";
 import {FunctionComponent} from "react";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {Col, Row, Table, Typography} from "antd";
 import PodcastDetails from "../../molecules/PodcastDetails";
 import {ColumnsType} from "antd/lib/table";
 import {EpisodeType} from "../../../types";
 import "./styles.scss"
 import CustomCard from "../../molecules/CustomCard";
+import {setNavigating} from "../../../redux/podcastSlice";
 
 const Podcast = () => {
   const { podcastId } = useParams();
   const {isLoading, isSuccess, isError, error} = useGetEpisodesQuery(podcastId);
   const {podcast, episodes} = useSelector((state: any) => state.podcast);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   if (isLoading) {
     return <Loading />
@@ -34,7 +36,10 @@ const Podcast = () => {
           <Typography.Text
             strong
             style={{ color: "#607786" }}
-            onClick={() => navigate(`episode/${record.id}`)}
+            onClick={() => {
+              dispatch(setNavigating(true));
+              navigate(`episode/${record.id}`);
+            }}
           >
             {value}
           </Typography.Text>

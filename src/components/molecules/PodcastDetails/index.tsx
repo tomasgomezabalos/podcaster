@@ -4,18 +4,17 @@ import "./styles.scss"
 import CustomDivider from "../../atoms/CustomDivider";
 import CustomCard from "../CustomCard";
 import HtmlText from "../../atoms/HtmlText";
-import {useNavigate} from "react-router-dom";
 
 export interface IPodcastDetailsProps {
   podcast: PodcastType;
+  onClick?: (podcast: PodcastType) => void;
 }
 
-const PodcastDetails = ({ podcast }: IPodcastDetailsProps) => {
+const PodcastDetails = ({ podcast, onClick }: IPodcastDetailsProps) => {
   const { name, author, image, description } = podcast;
-  const navigate = useNavigate();
 
   const navigateToPodcast = () => {
-    navigate(`/podcast/${podcast.id}`);
+    onClick && onClick(podcast);
   }
 
   return (
