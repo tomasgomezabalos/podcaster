@@ -9,6 +9,7 @@ import EpisodeDetails from "../../molecules/EpisodeDetails";
 import {EpisodeType, PodcastType} from "../../../types";
 import CustomCard from "../../molecules/CustomCard";
 import {setNavigating} from "../../../redux/podcastSlice";
+import Error from "../../atoms/Error";
 
 const Episode = () => {
   const { podcastId, episodeId } = useParams();
@@ -22,7 +23,9 @@ const Episode = () => {
   }
 
   if (isError) {
-    console.log("Error getting episodes: ", error);
+    return (
+      <Error message="Error getting episodes" error={error} />
+    )
   }
 
   if (isSuccess) {

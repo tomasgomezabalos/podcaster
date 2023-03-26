@@ -8,6 +8,7 @@ import PodcastListItem from "../../molecules/PodcastListItem";
 import {useDispatch, useSelector} from "react-redux";
 import {filterPodcasts, selectPodcast} from "../../../redux/podcastSlice";
 import "./styles.scss";
+import Error from "../../atoms/Error";
 
 const Podcasts = () => {
   const navigate = useNavigate();
@@ -21,7 +22,9 @@ const Podcasts = () => {
   }
 
   if (isError) {
-    console.log("Error getting podcasts: ", error);
+    return (
+      <Error message="Error getting podcasts" error={error} />
+    )
   }
 
   const handlePodcastClick = (podcast: PodcastType) => {

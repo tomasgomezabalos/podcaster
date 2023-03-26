@@ -11,6 +11,7 @@ import "./styles.scss"
 import CustomCard from "../../molecules/CustomCard";
 import {setNavigating} from "../../../redux/podcastSlice";
 import {formatDate, formatDuration} from "../../../utils";
+import Error from "../../atoms/Error";
 
 const Podcast = () => {
   const { podcastId } = useParams();
@@ -24,7 +25,9 @@ const Podcast = () => {
   }
 
   if (isError) {
-    console.log("Error getting episodes: ", error);
+    return (
+      <Error message="Error getting episodes" error={error} />
+    )
   }
 
   if (isSuccess) {
