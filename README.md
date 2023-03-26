@@ -2,7 +2,7 @@
 
 A [React](https://reactjs.org/) app created with [Vite](https://vitejs.dev/).
 
-Use [antd](https://reactjs.org/) as UI library.
+Use [antd](https://ant.design/) as UI library.
 
 ## Getting Started
 First, install the dependencies
