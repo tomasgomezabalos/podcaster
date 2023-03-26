@@ -3,7 +3,7 @@ import {useGetEpisodesQuery} from "../../../services/podcastApi";
 import Loading from "../../atoms/Loading";
 import {FunctionComponent} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {Col, Row, Table, Typography} from "antd";
+import {Col, Row, Table, Tooltip, Typography} from "antd";
 import PodcastDetails from "../../molecules/PodcastDetails";
 import {ColumnsType} from "antd/lib/table";
 import {EpisodeType} from "../../../types";
@@ -33,16 +33,18 @@ const Podcast = () => {
         dataIndex: 'title',
         key: 'title',
         render: (value: string, record: EpisodeType) => (
-          <Typography.Text
-            strong
-            style={{ color: "#607786" }}
-            onClick={() => {
-              dispatch(setNavigating(true));
-              navigate(`episode/${record.id}`);
-            }}
-          >
-            {value}
-          </Typography.Text>
+          <Tooltip title="View episode details...">
+            <Typography.Text
+              strong
+              style={{ color: "#607786" }}
+              onClick={() => {
+                dispatch(setNavigating(true));
+                navigate(`episode/${record.id}`);
+              }}
+            >
+              {value}
+            </Typography.Text>
+          </Tooltip>
         )
       },
       {

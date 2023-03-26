@@ -1,4 +1,4 @@
-import {Image, Typography} from "antd";
+import {Image, Tooltip, Typography} from "antd";
 import {PodcastType} from "../../../types";
 import "./styles.scss"
 import CustomDivider from "../../atoms/CustomDivider";
@@ -21,29 +21,35 @@ const PodcastDetails = ({ podcast, onClick }: IPodcastDetailsProps) => {
     <CustomCard>
       <div className="podcastDetails">
         <div className="podcastDetails__image">
-          <Image
-            preview={false}
-            src={image}
-            height={100}
-            onClick={navigateToPodcast}
-            style={{ cursor: onClick ? "pointer" : "default" }}
-          />
+          <Tooltip title={onClick ? "View podcast details..." : ""}>
+            <Image
+              preview={false}
+              src={image}
+              height={100}
+              onClick={navigateToPodcast}
+              style={{ cursor: onClick ? "pointer" : "default" }}
+            />
+          </Tooltip>
         </div>
         <CustomDivider />
-        <Typography.Title
-          level={5}
-          onClick={navigateToPodcast}
-          style={{ cursor: onClick ? "pointer" : "default" }}
-        >
-          {name}
-        </Typography.Title>
-        <Typography.Text
-          italic
-          onClick={navigateToPodcast}
-          style={{ cursor: onClick ? "pointer" : "default" }}
-        >
-          {`by ${author}`}
-        </Typography.Text>
+        <Tooltip title={onClick ? "View podcast details..." : ""} placement="topLeft">
+          <Typography.Title
+            level={5}
+            onClick={navigateToPodcast}
+            style={{ cursor: onClick ? "pointer" : "default" }}
+          >
+            {name}
+          </Typography.Title>
+        </Tooltip>
+        <Tooltip title={onClick ? "View podcast details..." : ""} placement="bottomLeft">
+          <Typography.Text
+            italic
+            onClick={navigateToPodcast}
+            style={{ cursor: onClick ? "pointer" : "default" }}
+          >
+            {`by ${author}`}
+          </Typography.Text>
+        </Tooltip>
         {description && (
           <>
             <CustomDivider />

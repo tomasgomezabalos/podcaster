@@ -4,6 +4,7 @@ import CustomDivider from "../../atoms/CustomDivider";
 import {HomeOutlined, LoadingOutlined} from "@ant-design/icons";
 import {useDispatch, useSelector} from "react-redux";
 import {setNavigating} from "../../../redux/podcastSlice";
+import {Tooltip} from "antd";
 
 const Layout = () => {
   const navigate = useNavigate();
@@ -23,17 +24,19 @@ const Layout = () => {
     <div className="layout">
       <div className="layout__header">
         <div className="layout__header__link">
-          <HomeOutlined
-            style={{ fontSize: 34, color: "#82aac0", cursor: !isHome ? "pointer": "default" }}
-            onClick={handleHome}
-          />
-          <span
-            className="layout__header__link__text"
-            style={{ cursor: !isHome ? "pointer": "default" }}
-            onClick={handleHome}
-          >
-            Podcaster
-          </span>
+          <Tooltip title={isHome ? "" : "Go to home page..."}>
+            <HomeOutlined
+              style={{ fontSize: 34, color: "#82aac0", cursor: !isHome ? "pointer": "default" }}
+              onClick={handleHome}
+            />
+            <span
+              className="layout__header__link__text"
+              style={{ cursor: !isHome ? "pointer": "default" }}
+              onClick={handleHome}
+            >
+              Podcaster
+            </span>
+          </Tooltip>
           {isNavigating && (
             <div className="layout__header__navigating">
               <LoadingOutlined style={{ fontSize: 34, color: "#82aac0" }} />
