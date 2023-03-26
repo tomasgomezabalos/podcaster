@@ -26,20 +26,21 @@ const PodcastDetails = ({ podcast, onClick }: IPodcastDetailsProps) => {
             src={image}
             height={100}
             onClick={navigateToPodcast}
+            style={{ cursor: onClick ? "pointer" : "default" }}
           />
         </div>
         <CustomDivider />
         <Typography.Title
           level={5}
           onClick={navigateToPodcast}
-          style={{ cursor: "pointer" }}
+          style={{ cursor: onClick ? "pointer" : "default" }}
         >
           {name}
         </Typography.Title>
         <Typography.Text
           italic
           onClick={navigateToPodcast}
-          style={{ cursor: "pointer" }}
+          style={{ cursor: onClick ? "pointer" : "default" }}
         >
           {`by ${author}`}
         </Typography.Text>

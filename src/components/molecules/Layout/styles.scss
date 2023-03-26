@@ -6,13 +6,13 @@
 
     &__link {
       display: flex;
-      cursor: pointer;
 
       &__text {
         text-decoration: none;
         color: #82aac0;
         font-size: 34px;
         margin-left: 5px;
+        cursor: pointer;
       }
     }
 

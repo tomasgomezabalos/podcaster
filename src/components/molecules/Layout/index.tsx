@@ -18,9 +18,17 @@ const Layout = () => {
   return (
     <div className="layout">
       <div className="layout__header">
-        <div className="layout__header__link" onClick={handleHome}>
-          <HomeOutlined style={{ fontSize: 34, color: "#82aac0" }} />
-          <span className="layout__header__link__text">Podcaster</span>
+        <div className="layout__header__link">
+          <HomeOutlined
+            style={{ fontSize: 34, color: "#82aac0", cursor: "pointer" }}
+            onClick={handleHome}
+          />
+          <span
+            className="layout__header__link__text"
+            onClick={handleHome}
+          >
+            Podcaster
+          </span>
           {isNavigating && (
             <div className="layout__header__navigating">
               <LoadingOutlined style={{ fontSize: 34, color: "#82aac0" }} />
