@@ -1,4 +1,4 @@
-import {Outlet, useNavigate} from "react-router-dom";
+import {Outlet, useLocation, useNavigate} from "react-router-dom";
 import "./styles.scss";
 import CustomDivider from "../../atoms/CustomDivider";
 import {HomeOutlined, LoadingOutlined} from "@ant-design/icons";
@@ -9,10 +9,14 @@ const Layout = () => {
   const navigate = useNavigate();
   const {isNavigating} = useSelector((state: any) => state.podcast);
   const dispatch = useDispatch();
+  const location = useLocation();
+  const isHome = location.pathname === "/";
 
   const handleHome = () => {
-    dispatch(setNavigating(true));
-    navigate("/");
+    if (!isHome) {
+      dispatch(setNavigating(true));
+      navigate("/");
+    }
   }
 
   return (
@@ -20,11 +24,12 @@ const Layout = () => {
       <div className="layout__header">
         <div className="layout__header__link">
           <HomeOutlined
-            style={{ fontSize: 34, color: "#82aac0", cursor: "pointer" }}
+            style={{ fontSize: 34, color: "#82aac0", cursor: !isHome ? "pointer": "default" }}
             onClick={handleHome}
           />
           <span
             className="layout__header__link__text"
+            style={{ cursor: !isHome ? "pointer": "default" }}
             onClick={handleHome}
           >
             Podcaster
