@@ -1,6 +1,7 @@
 import {PodcastType} from "../../../types";
 import {Card, Image, Tooltip} from "antd";
 import "./styles.scss"
+import {memo} from "react";
 
 export interface IPodcastListItemProps {
   data: PodcastType;
@@ -52,4 +53,4 @@ const PodcastListItem = ({ data, onClick }: IPodcastListItemProps) => {
   )
 }
 
-export default PodcastListItem;
+export default memo(PodcastListItem);
