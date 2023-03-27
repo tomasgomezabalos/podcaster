@@ -4,7 +4,7 @@ export type PodcastType = {
   author: string;
   image: string;
   description: string;
-}
+};
 
 export type EpisodeType = {
   id: string;
@@ -13,4 +13,4 @@ export type EpisodeType = {
   description: string;
   url: string;
   date: string;
-}
+};

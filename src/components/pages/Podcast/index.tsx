@@ -1,33 +1,33 @@
-import {useNavigate, useParams} from "react-router-dom";
-import {useGetEpisodesQuery} from "../../../services/podcastApi";
-import Loading from "../../atoms/Loading";
-import {FunctionComponent} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {Col, Row, Table, Tooltip, Typography} from "antd";
-import PodcastDetails from "../../molecules/PodcastDetails";
-import {ColumnsType} from "antd/lib/table";
-import {EpisodeType} from "../../../types";
-import "./styles.scss"
-import CustomCard from "../../molecules/CustomCard";
-import {setNavigating} from "../../../redux/podcastSlice";
-import {formatDate, formatDuration} from "../../../utils";
-import Error from "../../atoms/Error";
+import './styles.scss';
+
+import {Col, Row, Table, Tooltip, Typography} from 'antd';
+import {ColumnsType} from 'antd/lib/table';
+import {FunctionComponent} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {useNavigate, useParams} from 'react-router-dom';
+
+import {setNavigating} from '../../../redux/podcastSlice';
+import {useGetEpisodesQuery} from '../../../services/podcastApi';
+import {EpisodeType} from '../../../types';
+import {formatDate, formatDuration} from '../../../utils';
+import Error from '../../atoms/Error';
+import Loading from '../../atoms/Loading';
+import CustomCard from '../../molecules/CustomCard';
+import PodcastDetails from '../../molecules/PodcastDetails';
 
 const Podcast = () => {
-  const { podcastId } = useParams();
+  const {podcastId} = useParams();
   const {isLoading, isSuccess, isError, error} = useGetEpisodesQuery(podcastId);
   const {podcast, episodes} = useSelector((state: any) => state.podcast);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   if (isLoading) {
-    return <Loading />
+    return <Loading />;
   }
 
   if (isError) {
-    return (
-      <Error message="Error getting episodes" error={error} />
-    )
+    return <Error message="Error getting episodes" error={error} />;
   }
 
   if (isSuccess) {
@@ -40,7 +40,7 @@ const Podcast = () => {
           <Tooltip title="View episode details...">
             <Typography.Text
               strong
-              style={{ color: "#607786" }}
+              style={{color: '#607786'}}
               onClick={() => {
                 dispatch(setNavigating(true));
                 navigate(`episode/${record.id}`);
@@ -55,19 +55,15 @@ const Podcast = () => {
         title: 'Date',
         dataIndex: 'date',
         key: 'date',
-        render: (value: string) => (
-          <Typography.Text strong>{formatDate(value)}</Typography.Text>
-        ),
+        render: (value: string) => <Typography.Text strong>{formatDate(value)}</Typography.Text>
       },
       {
         title: 'Duration',
         dataIndex: 'duration',
         key: 'duration',
-        render: (value: number) => (
-          <Typography.Text strong>{formatDuration(value)}</Typography.Text>
-        )
-      },
-    ]
+        render: (value: number) => <Typography.Text strong>{formatDuration(value)}</Typography.Text>
+      }
+    ];
 
     return (
       <Row gutter={16}>
@@ -77,10 +73,7 @@ const Podcast = () => {
         <Col span={18}>
           <>
             <div className="podcast__title">
-              <Typography.Title
-                level={2}
-                style={{ margin: "5px 0 5px 5px" }}
-              >
+              <Typography.Title level={2} style={{margin: '5px 0 5px 5px'}}>
                 {`Episodes: ${episodes.length}`}
               </Typography.Title>
             </div>
@@ -99,8 +92,8 @@ const Podcast = () => {
           </>
         </Col>
       </Row>
-    )
+    );
   }
-}
+};
 
 export default Podcast as FunctionComponent;
