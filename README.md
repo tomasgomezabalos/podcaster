@@ -52,7 +52,7 @@ or npm:
 npm run build
 ```
 
-### For unit tests it uses [vitest](https://vitest.dev/). 
+### For unit tests it uses [vitest](https://vitest.dev/). For e2e tests it uses [playwright](https://playwright.dev/).
 
 If you want to run them,
 
@@ -61,6 +61,7 @@ using yarn:
 ```bash
 yarn test
 yarn test:coverage
+yarn test:e2e
 ```
 
 or npm:
@@ -68,6 +69,7 @@ or npm:
 ```bash
 npm run test
 npm run test:coverage
+npm run test:e2e
 ```
 
 ### If you want to run the lint, fix or format

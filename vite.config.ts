@@ -11,10 +11,10 @@ export default defineConfig({
     globals:true,
     environment:'jsdom',
     setupFiles: ['./vitest.setup.tsx'],
+    include: ['./tests/unit/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
     coverage:{
       provider:'c8',
       reporter: ['text', 'lcov'],
-      exclude:['tests']
     }
   }
 });

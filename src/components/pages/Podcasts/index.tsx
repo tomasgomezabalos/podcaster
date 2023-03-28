@@ -41,9 +41,10 @@ const Podcasts = () => {
   if (isSuccess) {
     const podcasts = filteredPodcasts as PodcastType[];
     return (
-      <Space direction="vertical" style={{width: '100%'}}>
+      <Space direction="vertical" style={{width: '100%'}} id="podcasts">
         <div className="podcasts__search">
           <Input
+            id="podcast-search"
             addonBefore={
               <span
                 style={{
@@ -51,7 +52,9 @@ const Podcasts = () => {
                   fontWeight: 600,
                   color: 'white'
                 }}
-              >{`${podcasts?.length}`}</span>
+              >
+                {`${podcasts?.length}`}
+              </span>
             }
             placeholder="Filter podcasts..."
             allowClear

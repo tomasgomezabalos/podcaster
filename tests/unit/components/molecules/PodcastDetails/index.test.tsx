@@ -1,7 +1,7 @@
 import {describe, expect, it, vi} from "vitest";
 import {fireEvent, render, screen} from "@testing-library/react";
-import PodcastDetails, {IPodcastDetailsProps} from "../../../../src/components/molecules/PodcastDetails";
-import {PodcastType} from "../../../../src/types";
+import PodcastDetails, {IPodcastDetailsProps} from "../../../../../src/components/molecules/PodcastDetails";
+import {PodcastType} from "../../../../../src/types";
 
 const renderPodcastDetails = ({ podcast, onClick }: IPodcastDetailsProps) => {
   const { container } = render(

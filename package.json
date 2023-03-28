@@ -1,8 +1,7 @@
 {
   "name": "podcaster",
   "private": true,
-  "version": "0.0.0",
-  "type": "module",
+  "version": "0.0.1",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -11,7 +10,9 @@
     "lint:fix": "eslint . --fix",
     "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
     "test": "vitest run",
-    "test:coverage": "vitest run --coverage"
+    "test:coverage": "vitest run --coverage",
+    "test:e2e": "playwright test",
+    "test:e2e:debug": "playwright test --headed --browser=chromium --debug"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.3",
@@ -23,6 +24,7 @@
     "sass": "^1.60.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.32.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",
     "@types/react": "^18.0.28",
@@ -39,9 +41,14 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-simple-import-sort": "^10.0.0",
     "jsdom": "^21.1.1",
+    "msw": "^1.2.1",
+    "playwright": "^1.32.1",
     "prettier": "^2.8.7",
     "typescript": "^4.9.3",
     "vite": "^4.2.0",
     "vitest": "^0.29.7"
+  },
+  "msw": {
+    "workerDirectory": "public"
   }
 }
