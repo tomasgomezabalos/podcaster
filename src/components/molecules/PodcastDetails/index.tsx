@@ -30,6 +30,7 @@ const PodcastDetails = ({podcast, onClick}: IPodcastDetailsProps) => {
               height={100}
               onClick={navigateToPodcast}
               style={{cursor: onClick ? 'pointer' : 'default'}}
+              alt={name}
             />
           </Tooltip>
         </div>
