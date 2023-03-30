@@ -52,7 +52,7 @@ or npm:
 npm run build
 ```
 
-### For unit tests it uses [vitest](https://vitest.dev/). For e2e tests it uses [playwright](https://playwright.dev/).
+### For unit tests use [vitest](https://vitest.dev/), for e2e [playwright](https://playwright.dev/).
 
 If you want to run them,
 
