@@ -32,7 +32,6 @@ const PodcastListItem = ({data, onClick}: IPodcastListItemProps) => {
         <Tooltip title="View podcast details...">
           <Card
             style={{
-              border: '1px solid #ccc',
               boxShadow: '2px 2px 2px 1px #cccccc',
               position: 'absolute',
               top: 10,

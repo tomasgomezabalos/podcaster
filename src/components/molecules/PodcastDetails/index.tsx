@@ -37,7 +37,7 @@ const PodcastDetails = ({podcast, onClick}: IPodcastDetailsProps) => {
         <CustomDivider />
         <Tooltip title={onClick ? 'View podcast details...' : ''} placement="topLeft">
           <Typography.Title
-            level={5}
+            level={4}
             onClick={navigateToPodcast}
             style={{cursor: onClick ? 'pointer' : 'default'}}
           >
@@ -56,7 +56,7 @@ const PodcastDetails = ({podcast, onClick}: IPodcastDetailsProps) => {
         {description && (
           <>
             <CustomDivider />
-            <Typography.Title level={5}>Description:</Typography.Title>
+            <Typography.Title level={4}>Description:</Typography.Title>
             <Typography.Paragraph italic>
               <HtmlText text={description} />
             </Typography.Paragraph>

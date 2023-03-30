@@ -1,6 +1,6 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 
-import {podcastApi} from '../services/podcastApi';
+import {podcastApi} from './podcastApi';
 import {EpisodeType, PodcastType} from '../types';
 
 export type PodcastStateType = {

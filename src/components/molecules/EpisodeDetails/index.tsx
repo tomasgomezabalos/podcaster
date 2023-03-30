@@ -12,8 +12,8 @@ const EpisodeDetails = ({episode}: IEpisodeDetailsProps) => {
 
   return (
     <div className="episodeDetails">
-      <Typography.Title level={3}>{title}</Typography.Title>
-      <Typography.Paragraph style={{fontSize: 16}} italic>
+      <Typography.Title level={2}>{title}</Typography.Title>
+      <Typography.Paragraph italic>
         <HtmlText text={description} />
       </Typography.Paragraph>
       <audio controls style={{width: '100%', marginTop: 20}}>

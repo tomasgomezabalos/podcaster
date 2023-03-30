@@ -4,8 +4,7 @@ const CustomCard = ({children, props}: any) => {
   return (
     <Card
       style={{
-        border: '1px solid #ccc',
-        boxShadow: '2px 2px 2px 1px #cccccc'
+        boxShadow: '2px 2px 2px 1px #ccc'
       }}
       {...props}
     >

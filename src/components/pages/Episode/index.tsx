@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {useNavigate, useParams} from 'react-router-dom';
 
 import {setNavigating} from '../../../redux/podcastSlice';
-import {useGetEpisodesQuery} from '../../../services/podcastApi';
+import {useGetEpisodesQuery} from '../../../redux/podcastApi';
 import {EpisodeType, PodcastType} from '../../../types';
 import Error from '../../atoms/Error';
 import Loading from '../../atoms/Loading';

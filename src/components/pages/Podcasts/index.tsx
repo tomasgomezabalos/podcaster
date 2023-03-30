@@ -6,7 +6,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
 
 import {filterPodcasts, selectPodcast} from '../../../redux/podcastSlice';
-import {useGetPodcastsQuery} from '../../../services/podcastApi';
+import {useGetPodcastsQuery} from '../../../redux/podcastApi';
 import {PodcastType} from '../../../types';
 import Error from '../../atoms/Error';
 import Loading from '../../atoms/Loading';

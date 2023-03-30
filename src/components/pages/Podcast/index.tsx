@@ -7,7 +7,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {useNavigate, useParams} from 'react-router-dom';
 
 import {setNavigating} from '../../../redux/podcastSlice';
-import {useGetEpisodesQuery} from '../../../services/podcastApi';
+import {useGetEpisodesQuery} from '../../../redux/podcastApi';
 import {EpisodeType} from '../../../types';
 import {formatDate, formatDuration} from '../../../utils';
 import Error from '../../atoms/Error';
@@ -40,7 +40,7 @@ const Podcast = () => {
           <Tooltip title="View episode details...">
             <Typography.Text
               strong
-              style={{color: '#607786'}}
+              type="secondary"
               onClick={() => {
                 dispatch(setNavigating(true));
                 navigate(`episode/${record.id}`);

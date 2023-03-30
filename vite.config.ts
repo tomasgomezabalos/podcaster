@@ -7,14 +7,14 @@ export default defineConfig({
   server: {
     port: 3000
   },
-  test:{
-    globals:true,
-    environment:'jsdom',
+  test: {
+    globals: true,
+    environment: 'jsdom',
     setupFiles: ['./vitest.setup.tsx'],
     include: ['./tests/unit/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
-    coverage:{
-      provider:'c8',
-      reporter: ['text', 'lcov'],
+    coverage: {
+      provider: 'c8',
+      reporter: ['text', 'lcov']
     }
   }
 });
