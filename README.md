@@ -62,6 +62,7 @@ using yarn:
 yarn test
 yarn test:coverage
 yarn test:e2e
+yarn test:e2e:debug
 ```
 
 or npm:
@@ -70,6 +71,7 @@ or npm:
 npm run test
 npm run test:coverage
 npm run test:e2e
+npm run test:e2e:debug
 ```
 
 ### If you want to run the lint, fix or format
