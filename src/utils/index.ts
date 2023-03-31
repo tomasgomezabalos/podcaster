@@ -19,28 +19,29 @@ export const formatDuration = (value: number): string => {
   return date.toISOString().substring(11, 19);
 };
 
-const getDate = () => new Date().toJSON().slice(0, 10).replace(/-/g, '/');
+const getDate = () => new Date().getTime();
+
+const SECONDS_IN_24_HOURS = 24 * 60 * 60 * 1000;
+
+const moreThan24Hours = (date: number): boolean => {
+  return (getDate() - date) > SECONDS_IN_24_HOURS;
+}
 
 export const setCache = (key: string, value: any): void => {
-  localStorage.setItem(`${getDate()}-${key}-podcaster`, JSON.stringify(value));
+  localStorage.setItem(`podcaster-${key}-${getDate()}`, JSON.stringify(value));
 }
 
 export const getCache = (key: string): any => {
-  const data = localStorage.getItem(`${getDate()}-${key}-podcaster`);
-  if (data) {
-    return JSON.parse(data);
-  }
-  return null;
-}
-
-export const removeOldCache = (): void => {
   for (let i: number = 0; i < localStorage.length; i++) {
-    const key: string | null = localStorage.key(i);
-    if (key) {
-      const keys = key.split('-');
-      if (keys && keys.length > 1 && keys[keys.length - 1] === "podcaster" && keys[0] !== getDate()) {
-        localStorage.removeItem(key);
+    const storageKey: string | null = localStorage.key(i);
+    if (storageKey && storageKey.startsWith(`podcaster-${key}-`)) {
+      const date: number = +storageKey.split(`podcaster-${key}-`)[1];
+      if (!moreThan24Hours(date)) {
+        return localStorage.getItem(storageKey);
+      } else {
+        localStorage.removeItem(storageKey);
       }
     }
   }
+  return null;
 }

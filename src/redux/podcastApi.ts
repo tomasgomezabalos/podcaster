@@ -2,7 +2,7 @@ import {createAsyncThunk} from '@reduxjs/toolkit';
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react';
 
 import {PodcastType} from '../types';
-import {getCache, removeOldCache, setCache} from "../utils";
+import {getCache, setCache} from "../utils";
 
 const ONE_DAY_IN_SECONDS = 24 * 60 * 60;
 
@@ -34,7 +34,6 @@ export const podcastApi = createApi({
     getPodcasts: build.query({
       query: (count) => `us/rss/toppodcasts/limit=${count}/json`,
       async onQueryStarted(count, {dispatch}) {
-        removeOldCache();
         const data = getCache("podcasts");
         if (data) {
           return {data};
@@ -59,7 +58,6 @@ export const podcastApi = createApi({
     getEpisodes: build.query({
       query: (id) => `lookup?id=${id}&media=podcast&entity=podcastEpisode&limit=20`,
       async onQueryStarted(id, {dispatch}) {
-        removeOldCache();
         const data = getCache(`${id}-episodes`);
         if (data) {
           return {data};
