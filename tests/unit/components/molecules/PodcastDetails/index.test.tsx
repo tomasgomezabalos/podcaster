@@ -1,4 +1,4 @@
-import {fireEvent, render, screen} from '@testing-library/react';
+import {cleanup, fireEvent, render, screen} from '@testing-library/react';
 import {describe, expect, it, vi} from 'vitest';
 
 import PodcastDetails, {
@@ -11,6 +11,10 @@ const renderPodcastDetails = ({podcast, onClick}: IPodcastDetailsProps) => {
   return container;
 };
 describe('PodcastDetails', () => {
+  afterEach(() => {
+    cleanup();
+  });
+
   it('renders all successfully', () => {
     const podcast: PodcastType = {
       id: 'id',
