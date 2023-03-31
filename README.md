@@ -1,8 +1,12 @@
 # Podcaster
 
-A [React](https://reactjs.org/) app created with [Vite](https://vitejs.dev/).
+A [React v18.2.0](https://reactjs.org/) app created with [Vite v4.2.0](https://vitejs.dev/).
 
-Use [antd](https://ant.design/) as UI library.
+Use:
+- [antd v5.3.2](https://ant.design/) as UI library
+- [redux-toolkit](https://redux-toolkit.js.org/) for general app state and data fetching
+- [NodeJs v18.14.1](https://nodejs.org/en/) as runtime
+- [yarn v1.22.19](https://yarnpkg.com/) as package manager
 
 ## Getting Started
 
