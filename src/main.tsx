@@ -5,12 +5,12 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import {Provider} from 'react-redux';
 import {BrowserRouter} from 'react-router-dom';
-import {worker} from '../mocks/browser';
 
 import App from './App';
 import store from './redux/store';
 
 if (process.env.NODE_ENV === 'test') {
+  const {worker} = await import('../mocks/browser');
   worker.start();
 }
 
