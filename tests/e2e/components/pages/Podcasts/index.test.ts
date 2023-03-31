@@ -2,7 +2,6 @@ import {expect, test} from '@playwright/test';
 
 const {beforeEach, describe} = test;
 
-
 beforeEach(async ({page}) => {
   await page.goto('http://localhost:3000');
 });
